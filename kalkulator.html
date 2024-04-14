@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Kalkulator Emerytalny</title>
+    <style>
+        body {
+            background-image: url('Tlo.png');
+            background-size: cover;
+            overflow-x: hidden;
+            font-family: Arial;
+        }
+        #tytul {
+            font-size: 50px;
+            font-family: Arial;
+            text-align: center;
+            margin-top: 40px;
+        }
+        #podstrony {
+            font-size: 25px;
+            font-family: Arial;
+            text-align: center;
+            margin-top: 500px;
+            margin-left: 50px;
+        }
+        #podstrony a {
+            margin-right: 50px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        #podstrony #strglowna {
+            font-size: 35px;
+        }
+        #formularz {
+            font-size: 20px;
+            font-family: Arial;
+            text-align: center;
+            margin-top: -420px;
+            margin-left: -950px;
+        }
+        #formularz select {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #formularz input {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #formularz #przycisk {
+            font-weight: bold;
+        }
+        #formularz2 #przycisk2{
+            font-weight: bold;
+        }
+        #formularz2 {
+            font-size: 20px;
+            font-family: Arial;
+            text-align: center;
+            margin-top: -300px;
+            margin-right: -900px;
+        }
+        #formularz2 input {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #obliczenie1 {
+            font-size: 15px;
+            text-align: center;
+            line-height: 30px;
+        }
+        #obliczenie2 {
+            text-align: center;
+            margin-top: 50px;
+           line-height: 30px;
+        }
+        #text1 {
+            font-size: 18px;
+            text-align: center;
+            margin-top: -350px;
+            margin-left: -950px;
+        }
+        #text2 {
+            font-size: 18px;
+            text-align: center;
+            margin-top:-50px;
+            margin-right:-900px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1 id="tytul">Kalkulator Emerytalny</h1>
+
+    <p id="podstrony">
+        <a href="kontakt.html">Kontakt</a>
+        <a id="strglowna" href="strona_glowna.html">Strona Główna</a>
+        <a href="kalkulator.html">Kalkulator</a>
+    </p>
+
+    <form id="formularz">
+        <label for="wiek">Podaj swój wiek: </label> <br />
+        <input type="number" id="wiek" name="wybor_wiek" min="1" max="99" style="width: 35px; height: 20px; font-size: 15px; background-color: palegoldenrod"/> <br />
+        <label for="deklarowany_wiek">Podaj wiek dla którego <br />chcesz sprawdzić wysokość emerytury: </label> <br />
+        <input type="number" id="deklarowany_wiek" name="wybor_dekl_wiek" min="1" max="99" style="width: 35px; height: 20px; font-size: 15px; background-color: palegoldenrod"/> <br />
+        <label for="kwota">Podaj wysokość miesięcznej kwoty <b>(zł)</b> <br />którą chcesz przeznaczać na emeryturę: </label> <br />
+        <input type="number" id="kwota" name="wybor_kwota" min="0" style="width: 120px; height: 20px; font-size: 15px; background-color: palegoldenrod" /> <br />
+        <input  id="przycisk" type="button" value="Oblicz" style="width: 80px; height: 30px; font-size: 20px; background-color: khaki;" />
+    </form>
+
+    <form id="formularz2">
+        <label for="wiek2">Podaj swój wiek: </label> <br />
+        <input type="number" id="wiek2" name="wybor_wiek2" min="1" max="99" style="width: 35px; height: 20px; font-size: 15px; background-color: palegoldenrod" /> <br />
+        <label for="kwota2">Podaj wysokość miesięcznej kwoty <b>(zł)</b> <br />którą chcesz przeznaczać na emeryturę: </label> <br />
+        <input type="number" id="kwota2" name="wybor_kwota2" min="0"style="width: 120px; height: 20px; font-size: 15px; background-color: palegoldenrod" /> <br />
+        <label for="cel">Podaj kwotę <b>(zł)</b> którą chcesz osiągnąć: </label> <br />
+        <input type="number" id="cel" name="cel_kwota" min="0"style="width: 120px; height: 20px; font-size: 15px; background-color: palegoldenrod" /> <br />
+        <input id="przycisk2" type="button" value="Oblicz" style="width: 80px; height: 30px; font-size: 20px; background-color: khaki;" />
+    </form>
+
+    <p id="text1"><strong>Wypełnij formularz aby obliczyć <br />emeryturę przy podanym wieku.</strong></p>
+    <p id="text2"><strong>Wypełnij formularz aby obliczyć <br />wiek potrzebny do osiągnięcia celu emerytury.</strong></p>
+    <p id="obliczenie1"></p>
+    <p id="obliczenie2"></p>
+
+    <script>
+        document.getElementById('przycisk').addEventListener('click', function () {
+            var wiek = document.getElementById('wiek').value;
+            var deklarowany_wiek = document.getElementById('deklarowany_wiek').value;
+            var kwota = document.getElementById('kwota').value;
+
+            var emerytura = (deklarowany_wiek - wiek) * 12 * kwota;
+            document.getElementById('obliczenie1').innerHTML = 'Wartość twojej emerytury w wieku ' + deklarowany_wiek + ' lat będzie wynosić: <br><b>' + emerytura + ' zł.</b>';
+        });
+        document.getElementById('przycisk2').addEventListener('click', function () {
+            var wiek2 = parseInt(document.getElementById('wiek2').value);
+            var kwota2 = document.getElementById('kwota2').value;
+            var cel = document.getElementById('cel').value;
+
+            var wiek_osiagniecia = Math.ceil(wiek2 + cel / (kwota2 * 12));
+            document.getElementById('obliczenie2').innerHTML = 'Swój cel emerytury wynoszący ' + cel + ' zł osiągniesz w wieku: <br><b>' + wiek_osiagniecia + ' lat.</b>'
+        });
+    </script>
+</body>
+</html>
